@@ -1,0 +1,19 @@
+@startuml
+
+entity 記事 {
+  記事ID
+  --
+  最新履歴（履歴ID）
+}
+
+entity 履歴 {
+  履歴ID
+  --
+  記事ID
+  本文
+  更新日
+}
+
+記事 ||...|{ 履歴
+
+@enduml
