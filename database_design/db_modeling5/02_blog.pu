@@ -6,10 +6,12 @@
 @startuml
 
 entity 記事 {
-  記事ID
-  更新日
+  ID
   --
+  記事ID
   本文
+  更新日
+  バージョン
 }
 
 @enduml
