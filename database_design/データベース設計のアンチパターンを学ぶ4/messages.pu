@@ -12,4 +12,6 @@ entity MessageRelations {
   --
 }
 
+Messages ||...|{ MessageRelations
+
 @enduml
