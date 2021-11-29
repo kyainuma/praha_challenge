@@ -1,0 +1,32 @@
+@startuml
+
+entity Mangas {
+  MangaID
+  --
+  name
+}
+
+entity MangaComments {
+  MangaCommentID
+  --
+  MangaID
+  text
+}
+
+entity Novels {
+  NovelID
+  --
+  name
+}
+
+entity NovelComments {
+  NovelCommentID
+  --
+  NovelID
+  text
+}
+
+Mangas ||...o{ MangaComments
+Novels ||...o{ NovelComments
+
+@enduml
