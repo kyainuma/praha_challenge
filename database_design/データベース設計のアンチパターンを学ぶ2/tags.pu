@@ -1,0 +1,25 @@
+@startuml
+
+entity Posts {
+  PostID
+  --
+  本文
+}
+
+' entity Tags {
+'   TgaID
+'   --
+'   名前
+' }
+
+entity Tags {
+  ' PostTagID
+  PostID
+  content
+  --
+}
+
+Posts ||...o{ Tags
+' Tags ||...o{ PostTags
+
+@enduml
