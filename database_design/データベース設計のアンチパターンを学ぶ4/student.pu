@@ -1,0 +1,18 @@
+@startuml student
+' ENUMで取りうる値を別のテーブルにレコードとして管理しておき、そのテーブルへの参照キーとして列を定義する
+
+entity Student {
+  StudentID
+  --
+  name
+  Status
+}
+
+entity Status {
+  Status
+  --
+}
+
+Status ||...o{ Student
+
+@enduml
