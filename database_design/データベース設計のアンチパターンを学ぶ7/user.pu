@@ -1,0 +1,15 @@
+@startuml user
+
+entity User {
+  UserID
+  --
+  name
+}
+
+entity TaikaiUser {
+  TaikaiUserID
+  --
+  name
+}
+
+@enduml
