@@ -1,15 +1,22 @@
 @startuml user
 
-entity User {
-  UserID
+entity UseUser {
+  id: varchar
   --
-  name
+  name: varchar
 }
 
 entity TaikaiUser {
-  TaikaiUserID
+  id: varchar
   --
-  name
+  name: varchar
+}
+
+entity User {
+  id: varchar
+  --
+  name: varchar
+  user_status: integer
 }
 
 @enduml
