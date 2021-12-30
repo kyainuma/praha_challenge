@@ -1,0 +1,10 @@
+@startuml Product
+
+entity Product {
+  productId: bigint
+  --
+  productCode: varchar
+  name: varchar
+}
+
+@enduml
