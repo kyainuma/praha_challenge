@@ -259,3 +259,167 @@ AND
 
 ## 課題3
 - 社員を管理するサービスで社員コードを主キーにする場合
+
+# SQL10本ノック
+## 課題1
+> 1996年に3回以上注文した（Ordersが3つ以上紐づいている）CustomerのIDと、注文回数
+```sql
+SELECT CustomerID, COUNT(*) OrderCount FROM Orders
+WHERE OrderDate BETWEEN '1996-01-01' AND '1996-12-31'
+GROUP BY
+  CustomerID
+ORDER BY OrderCount DESC;
+```
+
+> 最もよく注文してくれたのは、どのCustomerでしょうか？
+```sql
+SELECT CustomerID, COUNT(*) OrderCount FROM Orders
+GROUP BY
+  CustomerID
+HAVING
+  COUNT(*) = (SELECT MAX(cnt)
+              FROM
+                (SELECT COUNT(*) cnt
+                 FROM Orders
+                 GROUP BY CustomerID) v);
+```
+
+> 過去最も多くのOrderDetailが紐づいたOrderを取得してください。何個OrderDetailが紐づいていたでしょうか？
+```sql
+SELECT
+  OrderID, COUNT(*) OrderDetailCount
+FROM
+  OrderDetails
+GROUP BY
+  OrderID
+HAVING
+  COUNT(*) = (SELECT MAX(cnt)
+              FROM
+                (SELECT COUNT(*) cnt
+                 FROM OrderDetails
+                 GROUP BY OrderID) v);
+```
+
+> 過去最も多くのOrderが紐づいたShipperを特定してみてください
+```sql
+SELECT ShipperID, COUNT(*) ShipperCount FROM Orders
+GROUP BY
+  ShipperID
+ORDER BY ShipperCount DESC;
+```
+
+> 売上が高い順番にCountryを並べてみましょう
+```sql
+SELECT ROUND(SUM(OrderDetails.Quantity * Products.Price)) sales, Customers.Country FROM Customers
+INNER JOIN Orders
+  ON Customers.CustomerID = Orders.CustomerID
+INNER JOIN OrderDetails
+  ON Orders.OrderID = OrderDetails.OrderID
+INNER JOIN Products
+  ON OrderDetails.ProductID = Products.ProductID
+GROUP BY
+  Customers.Country
+ORDER BY sales DESC;
+```
+
+> 国ごとの売上を年毎に（1月1日~12月31日の間隔で）集計してください
+```sql
+SELECT ROUND(SUM(OrderDetails.Quantity * Products.Price)) sales, strftime('%Y', Orders.OrderDate) as OrderYear, Customers.Country
+FROM Customers
+INNER JOIN Orders
+  ON Customers.CustomerID = Orders.CustomerID
+INNER JOIN OrderDetails
+ ON Orders.OrderID = OrderDetails.OrderID
+INNER JOIN Products
+ ON OrderDetails.ProductID = Products.ProductID
+GROUP BY
+  Customers.Country,
+  OrderYear
+ORDER BY Customers.Country;
+```
+
+> Employeeテーブルに「Junior（若手）」カラム（boolean）を追加
+```sql
+ALTER TABLE Employees ADD "Junior" boolean NOT NULL DEFAULT 0;
+```
+
+> 誕生日が1960年より後のEmployeeの場合は値をTRUEにする更新クエリ
+```sql
+UPDATE Employees
+SET Junior =
+    CASE
+        WHEN BirthDate >= '1960-01-01' THEN 1
+        ELSE 0
+    END;
+```
+
+> 「long_relation」カラム（boolean）をShipperテーブルに追加してください
+```sql
+ALTER TABLE Shippers ADD "long_relation" boolean NOT NULL DEFAULT 0;
+```
+
+> long_relationがtrueになるべきShipperレコードを特定して
+```sql
+SELECT ShipperID, COUNT(*) ShipperCount FROM Orders
+GROUP BY
+  ShipperID
+HAVING
+  COUNT(*) >= 70;
+```
+
+> long_relationをtrueにしてください
+```sql
+UPDATE Shippers
+SET long_relation = 1
+WHERE ShipperID = 2;
+```
+
+> 「それぞれのEmployeeが最後に担当したOrderと、その日付を取得してほしい」
+```sql
+SELECT OrderID, EmployeeID, MAX(OrderDate) LatestOrderDate
+FROM Orders
+GROUP BY EmployeeID;
+```
+
+> Customerテーブルで任意の１レコードのCustomerNameをNULLにしてください
+```sql
+UPDATE Customers
+SET CustomerName = NULL
+WHERE CustomerID = 1;
+```
+
+> CustomerNameが存在するユーザを取得するクエリ
+```sql
+SELECT * FROM Customers
+WHERE CustomerName IS NOT NULL;
+```
+
+> CustomerNameが存在しない（NULLの）ユーザを取得するクエリ
+```sql
+SELECT * FROM Customers
+WHERE CustomerName IS NULL;
+```
+
+> EmployeeId=1の従業員のレコードを、Employeeテーブルから削除し
+```sql
+DELETE FROM Employees
+WHERE EmployeeID = 1;
+```
+
+> EmloyeeId=1が担当したOrdersを表示しないクエリ
+```sql
+SELECT Orders.OrderID, Orders.CustomerID, Employees.EmployeeID, Orders.OrderDate
+FROM Orders
+INNER JOIN Employees
+  ON Orders.EmployeeID = Employees.EmployeeID
+ORDER BY Orders.EmployeeID;
+```
+
+> EmloyeeId=1が担当したOrdersを表示する（Employeesに関する情報はNULLで埋まる）クエリ
+```sql
+SELECT Orders.OrderID, Orders.CustomerID, Employees.EmployeeID, Orders.OrderDate
+FROM Orders
+LEFT OUTER JOIN Employees
+  ON Orders.EmployeeID = Employees.EmployeeID
+ORDER BY Orders.EmployeeID;
+```
