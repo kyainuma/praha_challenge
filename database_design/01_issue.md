@@ -423,3 +423,15 @@ LEFT OUTER JOIN Employees
   ON Orders.EmployeeID = Employees.EmployeeID
 ORDER BY Orders.EmployeeID;
 ```
+
+## 課題2
+> 「WHERE」と「HAVING」二つのクエリを使えますが、それぞれの違いを教えてください。どのような時にどちらを使うべきでしょうか？
+- WHERE ・・・グループ化をされる前の抽出条件を指定できる
+- HAVING・・・グループ化した後の抽出条件を指定できる
+- グループ化した後のデータに条件を指定したい場合はHAVINGを使う。グループ化する前のデータに条件を指定したい場合はWHERE。
+
+> SQLの文脈においてDDL、DML、DCL、TCLとは何でしょうか？
+- DDL: データ定義言語（Data Definition Language）データベースのスキーマやデータ構造を扱うコマンド
+- DML: データ操作言語（Data Manipulation Language）データベースに格納されているデータを操作するために使われるコマンド
+- DCL: データ制御言語（Data Control Language）パーミッションや権限に関連するコマンド
+- TCL: トランザクション制御言語（Transaction Control Language）データベース内におけるトランザクションを扱うコマンド
