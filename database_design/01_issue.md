@@ -435,3 +435,13 @@ ORDER BY Orders.EmployeeID;
 - DML: データ操作言語（Data Manipulation Language）データベースに格納されているデータを操作するために使われるコマンド
 - DCL: データ制御言語（Data Control Language）パーミッションや権限に関連するコマンド
 - TCL: トランザクション制御言語（Transaction Control Language）データベース内におけるトランザクションを扱うコマンド
+
+## 課題3
+- 今までの注文で20,000円？以上注文したCustomerIDと総額を取得するクエリ
+[![Image from Gyazo](https://i.gyazo.com/0d0841647eadc38d113c82a3688a1b77.png)](https://gyazo.com/0d0841647eadc38d113c82a3688a1b77)
+
+- 商品カテゴリ別売上ランキングを作成して下さい
+[![Image from Gyazo](https://i.gyazo.com/8bbab964357d7e501942d8ef16926e38.png)](https://gyazo.com/8bbab964357d7e501942d8ef16926e38)
+
+- 1996年の月別売上ランキング
+[![Image from Gyazo](https://i.gyazo.com/0c9eae73f821ec8ac1564553c64680c5.png)](https://gyazo.com/0c9eae73f821ec8ac1564553c64680c5)
