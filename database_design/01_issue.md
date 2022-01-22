@@ -445,3 +445,48 @@ ORDER BY Orders.EmployeeID;
 
 - 1996年の月別売上ランキング
 [![Image from Gyazo](https://i.gyazo.com/0c9eae73f821ec8ac1564553c64680c5.png)](https://gyazo.com/0c9eae73f821ec8ac1564553c64680c5)
+
+```sql
+SELECT  Customers.CustomerID, ROUND(SUM(OrderDetails.Quantity * Products.Price)) sales FROM Customers
+INNER JOIN Orders
+  ON Customers.CustomerID = Orders.CustomerID
+INNER JOIN OrderDetails
+  ON Orders.OrderID = OrderDetails.OrderID
+INNER JOIN Products
+  ON OrderDetails.ProductID = Products.ProductID
+GROUP BY
+  Customers.CustomerID
+HAVING
+  ROUND(SUM(OrderDetails.Quantity * Products.Price)) > 20000
+ORDER BY sales DESC;
+```
+
+```sql
+SELECT  Categories.CategoryName, ROUND(SUM(OrderDetails.Quantity * Products.Price)) sales FROM Customers
+INNER JOIN Orders
+  ON Customers.CustomerID = Orders.CustomerID
+INNER JOIN OrderDetails
+  ON Orders.OrderID = OrderDetails.OrderID
+INNER JOIN Products
+  ON OrderDetails.ProductID = Products.ProductID
+INNER JOIN Categories
+  ON Products.CategoryID = Categories.CategoryID
+GROUP BY
+  Categories.CategoryName
+ORDER BY sales DESC;
+```
+
+```sql
+SELECT strftime('%Y%m', Orders.OrderDate) OrderMonth, ROUND(SUM(OrderDetails.Quantity * Products.Price)) sales
+FROM Customers
+INNER JOIN Orders
+  ON Customers.CustomerID = Orders.CustomerID
+INNER JOIN OrderDetails
+ ON Orders.OrderID = OrderDetails.OrderID
+INNER JOIN Products
+ ON OrderDetails.ProductID = Products.ProductID
+WHERE OrderDate BETWEEN '1996-01-01' AND '1996-12-31'
+GROUP BY
+  OrderMonth
+ORDER BY sales DESC;
+```
