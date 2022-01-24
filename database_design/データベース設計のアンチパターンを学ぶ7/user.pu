@@ -1,0 +1,22 @@
+@startuml user
+
+entity UseUser {
+  id: varchar
+  --
+  name: varchar
+}
+
+entity TaikaiUser {
+  id: varchar
+  --
+  name: varchar
+}
+
+entity User {
+  id: varchar
+  --
+  name: varchar
+  user_status: integer
+}
+
+@enduml

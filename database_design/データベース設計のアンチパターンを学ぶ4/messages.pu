@@ -1,0 +1,17 @@
+@startuml
+
+entity Messages {
+  MessageID
+  --
+  text
+}
+
+entity MessageRelations {
+  AncestorID(MessageID)
+  DescendantID(MessageID)
+  --
+}
+
+Messages ||...|{ MessageRelations
+
+@enduml
