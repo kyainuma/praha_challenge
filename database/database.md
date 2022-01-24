@@ -18,7 +18,7 @@
 > 「インデックスを理解する」「複合インデックスを理解する」の課題で作成したSELECT文を１つ選んでください
 ```sql
 SELECT * *FROM salaries WHERE salary="40000";
-95373 rows in set (0.99 sec)
+95373 rows in set (3.02 sec)
 ```
 
 > 上記のSELECT文をVIEWとして、実行できるようにしてみましょう
@@ -28,7 +28,7 @@ CREATE VIEW salaries_view AS SELECT * FROM salaries;
 
 > 作成したビューからデータを取得するようにしてください。クエリのパフォーマンスはどのように変化したでしょうか？
 ```sql
-SELECT * FROM salaries_view;
-2844047 rows in set (0.84 sec)
+SELECT * FROM salaries_view WHERE salary="40000";
+95373 rows in set (2.09 sec)
 ```
 少しだけ実行速度が早くなっている。
