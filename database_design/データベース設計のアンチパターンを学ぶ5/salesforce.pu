@@ -1,0 +1,50 @@
+@startuml salesforce
+
+' TABLE NewCustomer {
+'   id: varchar
+'   called: boolean -- 電話をかけたらTRUEになる。FALSEの人には電話をかけなければいけない
+'   callNote: varchar -- 電話をかけた時に交わした内容のメモ
+'   metOnce: boolean -- アポで面談したらTRUEになる
+'   metAt: date -- 面談をした日付が入る
+'   closed: boolean -- 成約した
+'   closedAt: boolean -- 成約した日付が入る
+' }
+
+entity Customers {
+  CustomerID
+  --
+  tel
+  called
+  metOnce
+  closed
+}
+
+entity Calls {
+  CallID
+  --
+  CustomerID
+  callNote
+  callAt
+}
+
+entity Mets {
+  MetsID
+  --
+  CustomerID
+  metNote
+  metAt
+}
+
+entity Closes {
+  CloseID
+  --
+  CustomerID
+  closeNote
+  closedAt
+}
+
+Customers ||...o{ Calls
+Customers ||...o{ Mets
+Customers ||...o{ Closes
+
+@enduml
