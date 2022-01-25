@@ -1,0 +1,24 @@
+@startuml Assignee
+
+entity Assignee {
+  AssigneeID [PK]
+  --
+  name
+}
+
+entity Issue {
+  IssueID [PK]
+  --
+  text
+}
+
+entity AssigneeIssue {
+  AssigneeID [FK]
+  IssueID [FK]
+  --
+}
+
+Assignee ||...|| AssigneeIssue
+AssigneeIssue ||...o{ Issue
+
+@enduml
