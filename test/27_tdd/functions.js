@@ -23,12 +23,27 @@ export const add = (numbers) => {
   argsTypeCheck(numbers);
 
   const result = numbers.reduce(
-    ( previousValue, currentValue ) => previousValue + currentValue,
+    (previousValue, currentValue) => previousValue + currentValue,
     0
   )
 
   if (result > 1000) {
     return 'too big';
+  }
+  return result;
+}
+
+export const subtract = (numbers) => {
+  argsEmpCheck(numbers);
+  argsLengthCheck(numbers);
+  argsTypeCheck(numbers);
+
+  const result = numbers.reduce(
+    (previousValue, currentValue) => previousValue - currentValue
+  );
+
+  if (result < 0) {
+    return 'negative number';
   }
   return result;
 }
