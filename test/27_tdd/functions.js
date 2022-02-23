@@ -23,8 +23,7 @@ export const add = (numbers) => {
   argsTypeCheck(numbers);
 
   const result = numbers.reduce(
-    (previousValue, currentValue) => previousValue + currentValue,
-    0
+    (previousValue, currentValue) => previousValue + currentValue
   )
 
   if (result > 1000) {
