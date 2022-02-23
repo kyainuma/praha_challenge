@@ -1,4 +1,4 @@
-import { add, subtract, multiply } from './functions';
+import { add, subtract, multiply, divide } from './functions';
 
 describe('add', () => {
   describe('正常系', () => {
@@ -105,6 +105,42 @@ describe('multiply', () => {
     it('31個以上の引数を受け取った場合、エラーが発生すること', () => {
       const args = Array(31).fill(1);
       expect(() => multiply(args)).toThrow();
+    })
+  })
+})
+
+describe('divide', () => {
+  describe('正常系', () => {
+    it('[100, 10]を受け取った場合、10が返ること', () => {
+      const args = [100, 10]
+      expect(divide(args)).toBe(10);
+    })
+
+    it('30個の引数を受け取った場合、商が返ること', () => {
+      const args = Array(30).fill(1);
+      expect(divide(args)).toBe(1);
+    })
+
+    it('計算結果が少数の場合、「decimals number」と文字列が返ること', () => {
+      const args = [10, 3]
+      expect(divide(args)).toBe('decimals number');
+    })
+  })
+
+  describe('異常系', () => {
+    it('数字以外の引数を受け取った場合、エラーが発生すること', () => {
+      const args = ['test']
+      expect(() => divide(args)).toThrow();
+    })
+
+    it('引数が0個だった場合、エラーが発生すること', () => {
+      const args = []
+      expect(() => divide(args)).toThrow();
+    })
+
+    it('31個以上の引数を受け取った場合、エラーが発生すること', () => {
+      const args = Array(31).fill(1);
+      expect(() => divide(args)).toThrow();
     })
   })
 })

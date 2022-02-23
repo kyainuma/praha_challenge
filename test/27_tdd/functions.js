@@ -62,3 +62,18 @@ export const multiply = (numbers) => {
   }
   return result;
 }
+
+export const divide = (numbers) => {
+  argsEmpCheck(numbers);
+  argsLengthCheck(numbers);
+  argsTypeCheck(numbers);
+
+  const result = numbers.reduce(
+    (previousValue, currentValue) => previousValue / currentValue
+  );
+
+  if (!Number.isInteger(result)) {
+    return 'decimals number';
+  }
+  return result;
+}
