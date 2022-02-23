@@ -47,3 +47,18 @@ export const subtract = (numbers) => {
   }
   return result;
 }
+
+export const multiply = (numbers) => {
+  argsEmpCheck(numbers);
+  argsLengthCheck(numbers);
+  argsTypeCheck(numbers);
+
+  const result = numbers.reduce(
+    (previousValue, currentValue) => previousValue * currentValue
+  );
+
+  if (result > 1000) {
+    return 'big big number';
+  }
+  return result;
+}

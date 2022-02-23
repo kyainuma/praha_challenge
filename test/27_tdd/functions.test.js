@@ -1,4 +1,4 @@
-import { add, subtract } from './functions';
+import { add, subtract, multiply } from './functions';
 
 describe('add', () => {
   describe('正常系', () => {
@@ -69,6 +69,42 @@ describe('subtract', () => {
     it('31個以上の引数を受け取った場合、エラーが発生すること', () => {
       const args = Array(31).fill(1);
       expect(() => subtract(args)).toThrow();
+    })
+  })
+})
+
+describe('multiply', () => {
+  describe('正常系', () => {
+    it('[3, 10, 3]を受け取った場合、90が返ること', () => {
+      const args = [3, 10, 3]
+      expect(multiply(args)).toBe(90);
+    })
+
+    it('30個の引数を受け取った場合、積が返ること', () => {
+      const args = Array(30).fill(1);
+      expect(multiply(args)).toBe(1);
+    })
+
+    it('計算結果が1000を超える場合、「big big number」と文字列が返ること', () => {
+      const args = [1001, 1]
+      expect(multiply(args)).toBe('big big number');
+    })
+  })
+
+  describe('異常系', () => {
+    it('数字以外の引数を受け取った場合、エラーが発生すること', () => {
+      const args = ['test']
+      expect(() => multiply(args)).toThrow();
+    })
+
+    it('引数が0個だった場合、エラーが発生すること', () => {
+      const args = []
+      expect(() => multiply(args)).toThrow();
+    })
+
+    it('31個以上の引数を受け取った場合、エラーが発生すること', () => {
+      const args = Array(31).fill(1);
+      expect(() => multiply(args)).toThrow();
     })
   })
 })
