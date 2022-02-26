@@ -12,6 +12,11 @@ describe('add', () => {
       expect(add(args)).toBe(30);
     })
 
+    it('計算結果が1000の場合、1000が返ること', () => {
+      const args = [999, 1]
+      expect(add(args)).toBe(1000);
+    })
+
     it('計算結果が1000を超える場合、「too big」と文字列が返ること', () => {
       const args = [1000, 1]
       expect(add(args)).toBe('too big');
@@ -49,6 +54,11 @@ describe('subtract', () => {
       expect(subtract(args)).toBe(1);
     })
 
+    it('計算結果が0の場合、0が返ること', () => {
+      const args = [1, 1]
+      expect(subtract(args)).toBe(0);
+    })
+
     it('計算結果がマイナスの場合、「negative number」と文字列が返ること', () => {
       const args = [1, 2]
       expect(subtract(args)).toBe('negative number');
@@ -83,6 +93,11 @@ describe('multiply', () => {
     it('30個の引数を受け取った場合、積が返ること', () => {
       const args = Array(30).fill(1);
       expect(multiply(args)).toBe(1);
+    })
+
+    it('計算結果が1000の場合、1000が返ること', () => {
+      const args = [1000, 1]
+      expect(multiply(args)).toBe(1000);
     })
 
     it('計算結果が1000を超える場合、「big big number」と文字列が返ること', () => {
